@@ -2,8 +2,6 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { CircleHelp } from 'lucide-react';
-
-// Register the necessary Chart.js components
 ChartJS.register(ArcElement, Tooltip);
 
 const data = {
@@ -12,7 +10,7 @@ const data = {
         {
             data: [26.5, 36.4, 12.2, 24.3],
             backgroundColor: ['#4B40EE', '#FF6B6B', '#FFD700', '#D3D3D3'],
-            borderWidth: 0, // White gaps between segments
+            borderWidth: 0,
             borderColor: '#fff',
         },
     ],
@@ -23,20 +21,18 @@ const PieChartComponent = () => {
     const percentages = [35, 23, 21, 9];
     const changes = [1.12, -3.3, -2.3, 1.009];
 
-    // Chart.js options for the half-donut chart
     const options = {
-        cutout: '70%', // Adjust thickness to match the image
-        circumference: 180, // Limit to 180 degrees (half-circle)
-        rotation: -90, // Start from the top (rotate -90 degrees)
-        maintainAspectRatio: false, // Allow custom width/height
+        cutout: '70%',
+        circumference: 180,
+        rotation: -90,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: false, // Custom legend will be created
+                display: false,
             },
             tooltip: {
                 enabled: true,
             },
-            // Custom plugin to display the total in the center
             centerText: {
                 beforeDraw(chart) {
                     const { ctx, chartArea } = chart;
@@ -44,19 +40,13 @@ const PieChartComponent = () => {
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
                     const centerX = (chartArea.left + chartArea.right) / 2;
-                    const centerY = (chartArea.top + chartArea.bottom) / 2 + 20; // Adjust Y to account for half-donut
-
-                    // "Total" text
+                    const centerY = (chartArea.top + chartArea.bottom) / 2 + 20;
                     ctx.font = '13px Mulish';
                     ctx.fillStyle = '#7D7D7E';
                     ctx.fillText('Total', centerX, centerY - 20);
-
-                    // Total value
                     ctx.font = 'bold 18px Mulish';
                     ctx.fillStyle = '#000';
                     ctx.fillText(`₹${totalValue.toFixed(1)}L`, centerX, centerY);
-
-                    // Percentage change
                     ctx.font = '13px Mulish';
                     ctx.fillStyle = '#1D874F';
                     ctx.fillText('↑ 2.2%', centerX, centerY + 20);
@@ -66,7 +56,6 @@ const PieChartComponent = () => {
         },
     };
 
-    // Add the custom plugin to Chart.js
     const plugins = [
         {
             id: 'centerText',
@@ -85,7 +74,6 @@ const PieChartComponent = () => {
                     <Doughnut data={data} options={options} plugins={plugins} />
                 </div>
             </div>
-            {/* Custom Legend */}
             <div className="flex flex-col px-4 gap-2">
                 {data.labels.map((label, index) => (
                     <div key={index} className="flex items-center justify-between">

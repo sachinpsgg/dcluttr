@@ -24,36 +24,34 @@ ChartJS.register(
     Filler
 );
 
-const SalesChart = () => {
-    // Chart data
+const SalesChart = ({title}) => {
     const data = {
         labels: ['9', '10', '11', '12', '13', '14', '15'],
         datasets: [
             {
                 label: 'This Month',
                 data: [0, 2.0, 1.8, 3.0, 2.5, 4.0, 5.0],
-                borderColor: '#34C759', // Green line
-                backgroundColor: 'rgba(52, 199, 89, 0.1)', // Light green fil
+                borderColor: '#34C759',
+                backgroundColor: 'rgba(52, 199, 89, 0.1)',
                 fill: true,
                 tension: 0,
-                pointRadius: 0, // Hide points
+                pointRadius: 0,
                 borderWidth: 1,
             },
             {
                 label: 'Last Month',
-                data: [2, 0, 3, 2, 4, 3, 5], // Sample data for last month
-                borderColor: '#DB3500CC', // Orange line
-                borderDash: [3,3], // Dashed line
+                data: [2, 0, 3, 2, 4, 3, 5],
+                borderColor: '#DB3500CC',
+                borderDash: [3,3],
                 backgroundColor: 'transparent',
                 fill: false,
-                tension: 0, // Smooth curve
-                pointRadius: 0, // Hide points
+                tension: 0,
+                pointRadius: 0,
                 borderWidth: 1,
             },
         ],
     };
 
-    // Chart options
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -76,7 +74,7 @@ const SalesChart = () => {
         scales: {
             x: {
                 grid: {
-                    display: false, // Hide vertical grid lines
+                    display: false,
                 },
                 ticks: {
                     font: {
@@ -94,8 +92,8 @@ const SalesChart = () => {
                     },
                 },
                 grid: {
-                    borderDash: [5, 5], // Dashed grid lines
-                    color: '#E5E7EB', // Light gray grid lines
+                    borderDash: [5, 5],
+                    color: '#E5E7EB',
                 },
             },
         },
@@ -104,7 +102,7 @@ const SalesChart = () => {
     return (
         <div className="bg-white rounded-lg border border-[#EBEBEB] w-full">
             <div className="flex items-center justify-between mb-4 p-2 border-b-1 border-[#EBEBEB] ">
-                <h2 className="text-[14px] font-medium text-[#515153]">Sales (MRP)</h2>
+                <h2 className="text-[14px] font-medium text-[#515153]">{title}</h2>
                 <CircleHelp size={15}/>
             </div>
             <div className="flex items-center justify-between mb-4 px-2">
@@ -114,8 +112,6 @@ const SalesChart = () => {
                     <span className="text-gray-500 text-sm">vs 119.69 last month</span>
                 </div>
             </div>
-
-            {/* Chart */}
             <div className="h-40">
                 <Line data={data} options={options} />
             </div>

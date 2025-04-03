@@ -3,7 +3,6 @@ import Perfora from '../assets/perfora.png';
 import MamaEarth from '../assets/mamaearth.png';
 import Boat from '../assets/boat.png';
 import Add from '../assets/add.png';
-import User from '../assets/user.png';
 import SS from '../assets/ss.png';
 import {
     ChevronUp,
@@ -19,10 +18,7 @@ import {
 } from 'lucide-react';
 
 const Sidebar = () => {
-    // State for Channels submenu
     const [isChannelsOpen, setIsChannelsOpen] = useState(true);
-
-    // Toggle Channels submenu
     const toggleChannels = () => {
         setIsChannelsOpen(!isChannelsOpen);
     };

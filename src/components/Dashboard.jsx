@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import SalesChart from "./SalesChart.jsx";
 import {CalendarDays, ChartLine, ChevronDown} from "lucide-react";
 import PieChartComponent from "./PieChartComponent.jsx";
-import Table from "./Table.jsx";
-import {cityLevelData, cityTotal, skuLevelData, skuTotal} from "../helper/sampleData.jsx";
+import {cityLevelData, cityTotal, skuLevelData, skuTotal} from "../utils/sampleData.jsx";
 import BrandTogglers from "./BrandTogglers.jsx";
 import SKUDataTable from "./Table.jsx";
 
@@ -76,12 +75,14 @@ const Dashboard = () => {
             <div className="flex items-center flex-row border-b-1 border-[#EBEBEB]  justify-between px-3 py-2">
                 <BrandTogglers/>
             </div>
-            <div className="flex items-center flex-row border-b-1 border-[#EBEBEB] gap-4 p-4">
-               <SalesChart/>
-               <SalesChart/>
-               <PieChartComponent/>
-            </div>
-            <Table title="SKU Level Data"
+            {isToggled && (
+                <div className="flex items-center flex-row border-b-1 border-[#EBEBEB] gap-4 p-4">
+                    <SalesChart title="Sales (MRP)"/>
+                    <SalesChart title="Total Quantity Sold"/>
+                    <PieChartComponent/>
+                </div>
+            )}
+            <SKUDataTable title="SKU Level Data"
                    data={skuLevelData}
                    total={skuTotal}
                    selectedItems={selectedSKUs}
