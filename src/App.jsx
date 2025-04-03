@@ -7,7 +7,7 @@ function App() {
     <>
         <div className="flex h-screen">
                 <Sidebar />
-            <div className="overflow-y-auto h-screen p-5">
+            <div className="w-full overflow-y-auto h-screen p-5">
                 <Dashboard />
             </div>
         </div>
